@@ -1,0 +1,3 @@
+[31mThis text is red.
+[32mThis text is green.
+[0mThis text is back to the default color.

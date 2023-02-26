@@ -1,0 +1,10 @@
+DEFINE org.ru.nsu.tikhomolov.lab1.Operations.Define
+PUSH org.ru.nsu.tikhomolov.lab1.Operations.Push
+POP org.ru.nsu.tikhomolov.lab1.Operations.Pop
++ org.ru.nsu.tikhomolov.lab1.Operations.Plus
+- org.ru.nsu.tikhomolov.lab1.Operations.Minus
+* org.ru.nsu.tikhomolov.lab1.Operations.Multiply
+/ org.ru.nsu.tikhomolov.lab1.Operations.Division
+SQRT org.ru.nsu.tikhomolov.lab1.Operations.Sqrt
+PRINT org.ru.nsu.tikhomolov.lab1.Operations.Print
+DEFINE org.ru.nsu.tikhomolov.lab1.Operations.Define
