@@ -12,15 +12,15 @@ public class ParsingInputData {
         scanner = new Scanner(stream);
     }
 
-    public Data getData() {
+    public String[] getData() {
         logger.info("Getting data form file");
         String operation;
         while (true) {
             if (!scanner.hasNext()) {
-                return new Data("EOF", null, null);
+                return new String[] { "EOF" };
             }
 
-            operation = scanner.next();
+            operation = scanner.nextLine();
             if (operation.charAt(0) == '#') {
                 scanner.nextLine();
             } else {
@@ -28,10 +28,6 @@ public class ParsingInputData {
             }
         }
 
-        switch (operation) {
-            case "DEFINE" -> { return new Data(operation, scanner.next(), scanner.next()); }
-            case "PUSH" -> { return new Data(operation, scanner.next(), "0"); }
-            default -> { return new Data(operation, null, "0"); }
-        }
+        return operation.split(" ");
     }
 }

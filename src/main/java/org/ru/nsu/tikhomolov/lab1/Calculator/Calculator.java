@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Stack;
 
 import org.apache.log4j.Logger;
-import org.ru.nsu.tikhomolov.lab1.Main;
 import org.ru.nsu.tikhomolov.lab1.ParseInputStream.*;
 import org.ru.nsu.tikhomolov.lab1.ParseInputArgs.ParseInputArgs;
 import org.ru.nsu.tikhomolov.lab1.Factory.Factory;
@@ -14,19 +13,16 @@ import org.ru.nsu.tikhomolov.lab1.Operations.Commands;
 
 import static java.lang.Double.parseDouble;
 
-record parameter(String name, Double number) { }
 
 public class Calculator {
     public static class Context {
         private static final Map<String, Double> values = new HashMap<>();
         private static final Stack<Double> stack = new Stack<>();
 
-        public String variable_name;
-        public double variable_value;
+        public String[] arguments;
 
-        Context(parameter a) {
-            variable_name = a.name();
-            variable_value = a.number();
+        Context(String[] inp_args) {
+             arguments= inp_args;
         }
 
         public Double stackPop() {
@@ -57,7 +53,13 @@ public class Calculator {
 
         public Double mapGet(String name) {
             try {
-                return values.get(name);
+                Double d = values.get(name);
+                if (d != null) {
+                    return d;
+                } else {
+                    logger.error(new Exception(name + " do not exist in map"));
+                    return null;
+                }
             } catch (ClassCastException | NullPointerException e) {
                 throw new RuntimeException(e.getMessage());
             }
@@ -67,14 +69,19 @@ public class Calculator {
             try {
                 return stack.peek();
             } catch (EmptyStackException ese) {
+                logger.error(new Exception("Use pick for empty stack"));
                 throw new RuntimeException(ese);
             }
+        }
+
+        public boolean mapContainsKey(String name) {
+            return values.containsKey(name);
         }
     }
 
     ParsingInputData a;
 
-    private static final Logger logger = Logger.getLogger(Main.class.getName());
+    private static final Logger logger = Logger.getLogger(Calculator.class.getName());
 
     public Calculator(String[] args) {
         logger.debug("Create calculator instance");
@@ -88,19 +95,25 @@ public class Calculator {
     public void doCalculation() {
         logger.info("Start calculation");
 
-        Data b;
         while (true) {
-            b = a.getData();
-            if (b.operation().equals("EOF")) break;
-            Commands c = null;
+            String[] input_line = a.getData();
+            if (input_line[0].equals("EOF")) break;
+            Commands command;
             try {
-                c = (Commands) Factory.getInstance(b.operation(), new Context(new parameter(b.name(), parseDouble(b.value()))));
+                command = (Commands) Factory.getInstance(input_line[0], new Context(input_line));
             } catch (Exception e) {
                 logger.error("Factory error", new Exception(e.getMessage()));
                 throw new RuntimeException(e.getMessage());
             }
+            if (command == null) {
+                continue;
+            }
             try {
-                c.doCommand();
+                if (command.doCommand()) {
+                    logger.info(input_line[0] + " successfully complete");
+                } else {
+                    logger.warn("Error: " + input_line[0] + " can not be complete");
+                }
             } catch (Exception e) {
                 logger.error(new Exception(e.getMessage()));
                 throw new RuntimeException(e.getMessage());

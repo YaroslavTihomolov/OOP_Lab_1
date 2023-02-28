@@ -2,8 +2,7 @@ package org.ru.nsu.tikhomolov.lab1.Factory;
 
 import org.ru.nsu.tikhomolov.lab1.Calculator.Calculator;
 import org.apache.log4j.Logger;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -18,8 +17,9 @@ public class Factory {
         logger.debug("Create map of constructors");
         Scanner scanner = null;
         try {
-            scanner = new Scanner(new File("ClassOperation.txt"));
-        } catch (FileNotFoundException e) {
+            InputStream conf_file = Factory.class.getClassLoader().getResourceAsStream("ClassOperation.txt");
+            scanner = new Scanner(conf_file);
+        } catch (Exception e) {
             logger.error("File ClassOperation.txt did not exist", new Exception(e));
         }
         Map<String, Constructor<?> > class_operation = new HashMap<>();
@@ -41,14 +41,14 @@ public class Factory {
     public static Object getInstance(String className, Calculator.Context value) throws InstantiationException,
             IllegalAccessException, InvocationTargetException {
         if (!class_operation.containsKey(className)) {
-            logger.error("Can not crete " + className + " instance");
+            logger.warn("Can not crete " + className + " instance");
         }
         try {
             logger.debug("Creating " + className + " instance");
             return class_operation.get(className).newInstance(value);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            logger.error("Can not crete " + className + " instance", new Exception(e));
-            throw new RuntimeException(e);
+            logger.warn("Can not crete " + className + " instance");
+            return null;
         }
     }
 }

@@ -1,38 +1,46 @@
-2023-02-26 23:20:39 INFO  Main:13 - Program start
-2023-02-26 23:20:39 DEBUG Main:80 - Create calculator instance
-2023-02-26 23:20:39 INFO  Main:89 - Start calculation
-2023-02-26 23:20:39 INFO  ParsingInputData:16 - Getting data form file
-2023-02-26 23:20:39 DEBUG Data:29 - Create Data Instance { DEFINE, a, 0 }
-2023-02-26 23:20:39 DEBUG Factory:18 - Create map of constructors
-2023-02-26 23:20:39 DEBUG Factory:47 - Creating DEFINE instance
-2023-02-26 23:20:39 DEBUG Commands:16 - Do org.ru.nsu.tikhomolov.lab1.Operations.Define
-2023-02-26 23:20:39 INFO  ParsingInputData:16 - Getting data form file
-2023-02-26 23:20:39 DEBUG Data:29 - Create Data Instance { DEFINE, b, 10 }
-2023-02-26 23:20:39 DEBUG Factory:47 - Creating DEFINE instance
-2023-02-26 23:20:39 DEBUG Commands:16 - Do org.ru.nsu.tikhomolov.lab1.Operations.Define
-2023-02-26 23:20:39 INFO  ParsingInputData:16 - Getting data form file
-2023-02-26 23:20:39 DEBUG Data:29 - Create Data Instance { PRINT, null, 0 }
-2023-02-26 23:20:39 DEBUG Factory:47 - Creating PRINT instance
-2023-02-26 23:20:39 DEBUG Commands:16 - Do org.ru.nsu.tikhomolov.lab1.Operations.Print
-2023-02-26 23:20:39 WARN  Commands:20 - java.lang.Exception: Can not PRINT: stack is empty
-2023-02-26 23:20:39 INFO  ParsingInputData:16 - Getting data form file
-2023-02-26 23:20:39 DEBUG Data:29 - Create Data Instance { PUSH, a, 0 }
-2023-02-26 23:20:39 DEBUG Factory:47 - Creating PUSH instance
-2023-02-26 23:20:39 DEBUG Commands:14 - Do org.ru.nsu.tikhomolov.lab1.Operations.Push
-2023-02-26 23:20:39 INFO  ParsingInputData:16 - Getting data form file
-2023-02-26 23:20:39 DEBUG Data:29 - Create Data Instance { PRINT, null, 0 }
-2023-02-26 23:20:39 DEBUG Factory:47 - Creating PRINT instance
-2023-02-26 23:20:39 DEBUG Commands:16 - Do org.ru.nsu.tikhomolov.lab1.Operations.Print
-2023-02-26 23:20:39 INFO  ParsingInputData:16 - Getting data form file
-2023-02-26 23:20:39 DEBUG Data:29 - Create Data Instance { PUSH, b, 0 }
-2023-02-26 23:20:39 DEBUG Factory:47 - Creating PUSH instance
-2023-02-26 23:20:39 DEBUG Commands:14 - Do org.ru.nsu.tikhomolov.lab1.Operations.Push
-2023-02-26 23:20:39 INFO  ParsingInputData:16 - Getting data form file
-2023-02-26 23:20:39 DEBUG Data:29 - Create Data Instance { division, null, 0 }
-2023-02-26 23:20:39 ERROR Factory:44 - Can not crete division instance
-2023-02-26 23:20:39 DEBUG Factory:47 - Creating division instance
-2023-02-26 23:20:39 ERROR Main:99 - Factory error
-java.lang.Exception: Cannot invoke "java.lang.reflect.Constructor.newInstance(Object[])" because the return value of "java.util.Map.get(Object)" is null
-	at org.ru.nsu.tikhomolov.lab1.Calculator.Calculator.doCalculation(Calculator.java:99)
-	at org.ru.nsu.tikhomolov.lab1.Main.main(Main.java:16)
-2023-02-26 23:20:39 INFO  Main:20 - Program successfully end
+2023-02-28 21:49:50 DEBUG Calculator:87 - Create calculator instance
+2023-02-28 21:49:50 INFO  Calculator:96 - Start calculation
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 DEBUG Factory:17 - Create map of constructors
+2023-02-28 21:49:50 DEBUG Factory:47 - Creating DEFINE instance
+2023-02-28 21:49:50 DEBUG Commands:21 - Do org.ru.nsu.tikhomolov.lab1.Operations.Define { a, 16.14 }
+2023-02-28 21:49:50 INFO  Calculator:113 - DEFINE successfully complete
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 DEBUG Factory:47 - Creating DEFINE instance
+2023-02-28 21:49:50 DEBUG Commands:21 - Do org.ru.nsu.tikhomolov.lab1.Operations.Define { b, 12.3859 }
+2023-02-28 21:49:50 INFO  Calculator:113 - DEFINE successfully complete
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 DEBUG Factory:47 - Creating DEFINE instance
+2023-02-28 21:49:50 DEBUG Commands:21 - Do org.ru.nsu.tikhomolov.lab1.Operations.Define { a, 16 }
+2023-02-28 21:49:50 WARN  Commands:24 - 'a' - Wrong variable Name
+2023-02-28 21:49:50 WARN  Calculator:115 - Error: DEFINE can not be complete
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 DEBUG Factory:47 - Creating PUSH instance
+2023-02-28 21:49:50 DEBUG Commands:14 - Do org.ru.nsu.tikhomolov.lab1.Operations.Push { 10 }
+2023-02-28 21:49:50 INFO  Calculator:113 - PUSH successfully complete
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 DEBUG Factory:47 - Creating PUSH instance
+2023-02-28 21:49:50 DEBUG Commands:14 - Do org.ru.nsu.tikhomolov.lab1.Operations.Push { a }
+2023-02-28 21:49:50 INFO  Calculator:113 - PUSH successfully complete
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 DEBUG Factory:47 - Creating PUSH instance
+2023-02-28 21:49:50 DEBUG Commands:14 - Do org.ru.nsu.tikhomolov.lab1.Operations.Push { b }
+2023-02-28 21:49:50 INFO  Calculator:113 - PUSH successfully complete
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 DEBUG Factory:47 - Creating / instance
+2023-02-28 21:49:50 DEBUG Commands:19 - Do org.ru.nsu.tikhomolov.lab1.Operations.Division
+2023-02-28 21:49:50 INFO  Calculator:113 - / successfully complete
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 DEBUG Factory:47 - Creating PRINT instance
+2023-02-28 21:49:50 DEBUG Commands:15 - Do org.ru.nsu.tikhomolov.lab1.Operations.Print
+2023-02-28 21:49:50 INFO  Calculator:113 - PRINT successfully complete
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 DEBUG Factory:47 - Creating + instance
+2023-02-28 21:49:50 DEBUG Commands:18 - Do org.ru.nsu.tikhomolov.lab1.Operations.Plus
+2023-02-28 21:49:50 INFO  Calculator:113 - + successfully complete
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 DEBUG Factory:47 - Creating PRINT instance
+2023-02-28 21:49:50 DEBUG Commands:15 - Do org.ru.nsu.tikhomolov.lab1.Operations.Print
+2023-02-28 21:49:50 INFO  Calculator:113 - PRINT successfully complete
+2023-02-28 21:49:50 INFO  ParsingInputData:16 - Getting data form file
+2023-02-28 21:49:50 INFO  Calculator:122 - Calculation end

@@ -2,8 +2,6 @@ package org.ru.nsu.tikhomolov.lab1.Operations;
 
 import org.ru.nsu.tikhomolov.lab1.Calculator.Calculator;
 
-import java.util.EmptyStackException;
-
 public class Pop implements Commands {
     Calculator.Context cur_context;
 
@@ -12,12 +10,14 @@ public class Pop implements Commands {
     }
 
     @Override
-    public void doCommand() {
+    public boolean doCommand() {
         logger.debug("Do " + this.getClass().getName());
         try {
             cur_context.stackPop();
-        } catch (EmptyStackException ese) {
-            throw new RuntimeException(ese.getMessage());
+            return true;
+        } catch (Exception ese) {
+            logger.warn(ese.getMessage());
+            return false;
         }
     }
 }

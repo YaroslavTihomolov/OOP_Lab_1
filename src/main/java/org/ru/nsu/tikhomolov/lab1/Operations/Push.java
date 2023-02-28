@@ -10,17 +10,23 @@ public class Push implements Commands {
     }
 
     @Override
-    public void doCommand() {
-        logger.debug("Do " + this.getClass().getName());
-        double d;
+    public boolean doCommand() {
+        logger.debug("Do " + this.getClass().getName() + " { " + cur_context.arguments[1] + " }");
         try {
-            d = Double.parseDouble(cur_context.variable_name);
-            cur_context.stackPush(d);
+            cur_context.stackPush(Double.parseDouble(cur_context.arguments[1]));
+            return true;
         } catch (NumberFormatException nfe) {
             try {
-                cur_context.stackPush(cur_context.mapGet(cur_context.variable_name));
+                Double d = cur_context.mapGet(cur_context.arguments[1]);
+                if (d != null) {
+                    cur_context.stackPush(d);
+                    return true;
+                } else {
+                    return false;
+                }
             } catch (NullPointerException npe) {
-                throw new RuntimeException(npe.getMessage());
+                logger.warn(npe.getMessage());
+                return false;
             }
         }
     }
